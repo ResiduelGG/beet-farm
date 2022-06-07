@@ -21,5 +21,10 @@
 import Route from '@ioc:Adonis/Core/Route'
 
 Route.get('/', async () => {
-  return { hello: 'world' }
+  return { message: 'Beet Farm Test API' }
 })
+
+// beet farm custom api routes for item model
+Route.get('/items', 'ItemsController.index')
+Route.post('/items', 'ItemsController.store')
+Route.delete('/items/:id', 'ItemsController.destroy')
