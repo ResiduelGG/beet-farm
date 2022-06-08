@@ -8,6 +8,7 @@
 import type { Config } from '@japa/runner'
 import TestUtils from '@ioc:Adonis/Core/TestUtils'
 import { assert, runFailedTests, specReporter, apiClient } from '@japa/preset-adonis'
+import Application from '@ioc:Adonis/Core/Application'
 
 /*
 |--------------------------------------------------------------------------
@@ -67,3 +68,18 @@ export const configureSuite: Config['configureSuite'] = (suite) => {
     suite.setup(() => TestUtils.httpServer().start())
   }
 }
+
+/*
+|--------------------------------------------------------------------------
+| Open api spec
+|--------------------------------------------------------------------------
+*/
+export const plugins: Config['plugins'] = [
+  assert({
+    openApi: {
+      schemas: [Application.makePath('api-spec.yml')],
+    },
+  }),
+  runFailedTests(),
+  apiClient(),
+]

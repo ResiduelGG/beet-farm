@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: Beet Farm Test Api
+  version: 0.0.1
+paths:
+  /items:
+    post:
+      summary: Add a new item
+      responses:
+        '201':
+          description: Create success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+    get:
+      summary: Returns a list of items
+      responses:
+        "200":
+          description: A JSON array of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/item"
+  /items/{id}:
+    delete:
+      summary: Delete test item by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type : integer
+            minimum: 1
+      responses:
+        "200":
+          description: Delete success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+components:
+  schemas:
+    item:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        created_at:
+          type: string
+        updated_at:
+          type: string
