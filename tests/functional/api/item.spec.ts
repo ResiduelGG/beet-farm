@@ -23,7 +23,7 @@ test.group('Api items', () => {
 
   test('delete test item', async ({ client }) => {
     const item = await Item.findBy('name', testItemName)
-    const response = await client.delete(`/items/${item.id}`)
+    const response = await client.delete(`/items/${item?.id}`)
 
     response.assertAgainstApiSpec()
     response.assertBodyContains({ success: true })

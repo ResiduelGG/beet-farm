@@ -21,7 +21,15 @@ import Application from '@ioc:Adonis/Core/Application'
 | Feel free to remove existing plugins or add more.
 |
 */
-export const plugins: Config['plugins'] = [assert(), runFailedTests(), apiClient()]
+export const plugins: Config['plugins'] = [
+  assert({
+    openApi: {
+      schemas: [Application.makePath('api-spec.yml')],
+    },
+  }),
+  runFailedTests(),
+  apiClient(),
+]
 
 /*
 |--------------------------------------------------------------------------
@@ -68,18 +76,3 @@ export const configureSuite: Config['configureSuite'] = (suite) => {
     suite.setup(() => TestUtils.httpServer().start())
   }
 }
-
-/*
-|--------------------------------------------------------------------------
-| Open api spec
-|--------------------------------------------------------------------------
-*/
-export const plugins: Config['plugins'] = [
-  assert({
-    openApi: {
-      schemas: [Application.makePath('api-spec.yml')],
-    },
-  }),
-  runFailedTests(),
-  apiClient(),
-]
