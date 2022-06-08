@@ -29,3 +29,12 @@ To run tests, run the following command
 ```bash
   node ace test
 ```
+
+## Info
+
+Following endpoints are available:
+
+1. GET / - welcome message
+2. GET /items - returns all items
+3. POST /items - creates new item, by posting JSON - ``` { "name": "Beet" } ```
+4. DELETE /items/{id} - deletes item by id
