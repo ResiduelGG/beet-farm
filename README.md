@@ -18,6 +18,9 @@ Install project with basic data seeded in the database
   node ace db:seed
   npm run dev
 ```
+## Usage
+
+After the startup app should be accessible in - http://127.0.0.1:3333
 
 ## Running Tests
 
